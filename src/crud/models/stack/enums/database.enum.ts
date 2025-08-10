@@ -1,0 +1,11 @@
+export enum DatabaseEnum {
+    POSTGRES = "POSTGRES",
+    MYSQL = "MYSQL",
+    ORACLE = "ORACLE",
+    MONGODB = "MONGODB",
+    REDIS = "REDIS",
+    SQLITE = "SQLITE",
+    MARIADB = "MARIADB",
+    DYNAMODB = "DYNAMODB",
+    MICROSOFTSQLSERVER = "MICROSOFTSQLSERVER"
+}
