@@ -14,11 +14,11 @@
 */
 
 import { AppUserDTO } from "../dtos/app-user.dto";
-import { AppUser } from "../models/user/entity/app-user.entity";
+import { AppUser } from "../models/entity/app-user.entity";
 import { Request } from "express";
-import { RoleEnum } from "../models/user/enums/role.enum";
+import { RoleEnum } from "../models/enums/role.enum";
 import { UserStackMapper } from "./user-stack.mapper";
-import { AppUserValidator } from "../../middlewares/validation/app-user.validator";
+import { AppUserValidator } from "../middlewares/validation/app-user.validator";
 
 export class AppUserMapper {
 

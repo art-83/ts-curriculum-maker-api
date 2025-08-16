@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
 import dotenv from "dotenv";
-import { UserStack } from "../models/stack/entity/user-stack.entity";
-import { AppUser } from "../models/user/entity/app-user.entity";
+import { UserStack } from "../models/entity/user-stack.entity";
+import { AppUser } from "../models/entity/app-user.entity";
 
 dotenv.config();
 

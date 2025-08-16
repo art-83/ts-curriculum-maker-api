@@ -1,4 +1,4 @@
-import { RoleEnum } from "../models/user/enums/role.enum";
+import { RoleEnum } from "../models/enums/role.enum";
 import { UserStackDTO } from "./user-stack.dto";
 
 export interface AppUserDTO{

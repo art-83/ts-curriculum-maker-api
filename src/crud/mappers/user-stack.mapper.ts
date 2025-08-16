@@ -1,8 +1,8 @@
 import { UserStackDTO } from "../dtos/user-stack.dto";
-import { UserStack } from "../models/stack/entity/user-stack.entity";
-import { LangEnum } from "../models/stack/enums/lang.enum";
-import { FrameworkEnum } from "../models/stack/enums/framework.enum";
-import { DatabaseEnum } from "../models/stack/enums/database.enum";
+import { UserStack } from "../models/entity/user-stack.entity";
+import { LangEnum } from "../models/enums/lang.enum";
+import { FrameworkEnum } from "../models/enums/framework.enum";
+import { DatabaseEnum } from "../models/enums/database.enum";
 
 export class UserStackMapper {
     

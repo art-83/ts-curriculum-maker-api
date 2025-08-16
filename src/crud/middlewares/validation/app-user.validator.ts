@@ -1,10 +1,9 @@
 import { z } from "zod";
-import { UserStack } from "../../crud/models/stack/entity/user-stack.entity";
-import { AppUserDTO } from "../../crud/dtos/app-user.dto";
-import { RoleEnum, ZodRoleEnum } from "../../crud/models/user/enums/role.enum";
-import { LangEnum } from "../../crud/models/stack/enums/lang.enum";
-import { FrameworkEnum } from "../../crud/models/stack/enums/framework.enum";
-import { DatabaseEnum } from "../../crud/models/stack/enums/database.enum";
+import { AppUserDTO } from "../../dtos/app-user.dto";
+import { RoleEnum } from "../../models/enums/role.enum";
+import { LangEnum } from "../../models/enums/lang.enum";
+import { FrameworkEnum } from "../../models/enums/framework.enum";
+import { DatabaseEnum } from "../../models/enums/database.enum";
 
 export class AppUserValidator {
     validateDTO(appUserDTO: AppUserDTO): AppUserDTO {

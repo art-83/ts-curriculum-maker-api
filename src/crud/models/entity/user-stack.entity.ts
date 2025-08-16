@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { AppUser } from "../../user/entity/app-user.entity";
+import { AppUser } from "./app-user.entity";
 import { DatabaseEnum } from "../enums/database.enum";
 import { FrameworkEnum } from "../enums/framework.enum";
 import { LangEnum } from "../enums/lang.enum";

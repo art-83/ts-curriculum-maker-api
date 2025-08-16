@@ -1,6 +1,6 @@
-import { DatabaseEnum } from "../models/stack/enums/database.enum";
-import { FrameworkEnum } from "../models/stack/enums/framework.enum";
-import { LangEnum } from "../models/stack/enums/lang.enum";
+import { DatabaseEnum } from "../models/enums/database.enum";
+import { FrameworkEnum } from "../models/enums/framework.enum";
+import { LangEnum } from "../models/enums/lang.enum";
 
 export interface UserStackDTO {
     langs: LangEnum[];

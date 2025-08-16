@@ -15,7 +15,7 @@
 
 import { Request } from "express";
 import { AppUserDTO } from "../dtos/app-user.dto";
-import { AppUser } from "../models/user/entity/app-user.entity";
+import { AppUser } from "../models/entity/app-user.entity";
 import { appUserRepository } from "../datasource/data-source.config";
 import { AppUserMapper } from "../mappers/app-user.mapper";
 

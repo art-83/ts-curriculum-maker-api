@@ -1,7 +1,6 @@
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { RoleEnum } from "../enums/role.enum";
-import { UserStack } from "../../stack/entity/user-stack.entity";
-import e from "express";
+import { UserStack } from "./user-stack.entity"
 
 @Entity()
 export class AppUser {
