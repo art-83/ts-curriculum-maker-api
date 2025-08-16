@@ -1,6 +1,7 @@
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { RoleEnum } from "./enums/role.enum";
-import { UserStack } from "../stack/user-stack.entity";
+import { RoleEnum } from "../enums/role.enum";
+import { UserStack } from "../../stack/entity/user-stack.entity";
+import e from "express";
 
 @Entity()
 export class AppUser {
@@ -25,4 +26,13 @@ export class AppUser {
 
     @OneToOne(() => UserStack, stack => stack.user, {cascade: true})
     stack: UserStack;
+
+    constructor(name: string, email: string, password: string, cpf: string, role: RoleEnum, stack: UserStack) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.cpf = cpf;
+        this.role = role;
+        this.stack = stack;
+    }
 }

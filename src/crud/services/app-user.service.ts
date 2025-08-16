@@ -13,10 +13,22 @@
     }
 */
 
-import { UserStack } from "../models/stack/user-stack.entity";
-import { AppUser } from "../models/user/app-user.entity";
+import { Request } from "express";
+import { AppUserDTO } from "../dtos/app-user.dto";
+import { AppUser } from "../models/user/entity/app-user.entity";
+import { appUserRepository } from "../datasource/data-source.config";
 import { AppUserMapper } from "../mappers/app-user.mapper";
 
 export class AppUserService {
-    
+    appUserMapper: AppUserMapper = new AppUserMapper();
+
+    async createUser(appUserRequest: Request<{}, {}, AppUserDTO>): Promise <AppUser> {
+        try {
+            const userEntity = this.appUserMapper.reqToEntity(appUserRequest)
+            await appUserRepository.save(userEntity);
+            return userEntity;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
