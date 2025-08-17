@@ -5,13 +5,10 @@ import { AppUserCredentials } from "../models/entity/app-user-credentials.entity
 
 export class AppUserCredentialsMapper {
 
-    appUserValidator: AppUserValidator = new AppUserValidator();
+    private readonly appUserValidator: AppUserValidator = new AppUserValidator();
+    private readonly bcryptManager: BcryptManager = new BcryptManager();
 
-    bcryptManager: BcryptManager = new BcryptManager();
-
-    async toEntity(appUserCredentialsDTO: AppUserCredentialsDTO): Promise<AppUserCredentials> {
-        this.appUserValidator.validateAppUserCredentialsDTO(appUserCredentialsDTO);
-        
+    public async toEntity(appUserCredentialsDTO: AppUserCredentialsDTO): Promise<AppUserCredentials> {
         const passwordHash = await this.bcryptManager.encrypt(appUserCredentialsDTO.password);
         const cpfHash = await this.bcryptManager.encrypt(appUserCredentialsDTO.cpf);
         return new AppUserCredentials(
