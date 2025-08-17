@@ -1,14 +1,18 @@
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { AppUser } from "./app-user.entity";
-import { DatabaseEnum } from "../enums/database.enum";
-import { FrameworkEnum } from "../enums/framework.enum";
-import { LangEnum } from "../enums/lang.enum";
+import { AppUserData } from "./app-user-data.entity";
+import { DatabaseEnum } from "../enums/stack-database.enum";
+import { FrameworkEnum } from "../enums/stack-framework.enum";
+import { LangEnum } from "../enums/stack-lang.enum";
 
-@Entity()
-export class UserStack {
+@Entity({name: "app_user_stack"})
+export class AppUserStack {
 
     @PrimaryGeneratedColumn("uuid")
     id: string;
+    
+    @OneToOne(() => AppUserData, appuser => appuser.stack)
+    @JoinColumn({name: "user_data_id"})
+    user: AppUserData;
 
     @Column({
         type: "text",
@@ -30,11 +34,6 @@ export class UserStack {
         nullable: true
     })
     databases: DatabaseEnum[];
-
-
-    @OneToOne(() => AppUser, appuser => appuser.stack)
-    @JoinColumn({name: "user_id"})
-    user: AppUser;
 
     constructor(langs: LangEnum[], frameworks: FrameworkEnum[], databases: DatabaseEnum[]) {
         this.langs = langs;

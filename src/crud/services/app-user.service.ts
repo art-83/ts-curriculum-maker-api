@@ -1,34 +1,16 @@
-/*
-    {
-        "name": "your-beautiful-name",
-        "email": "your-amazing-email",
-        "password": "your-super-secret-password",
-        "cpf": "your-greatest-and-unique-cpf",
-        "role": "your-not-bossy-role" (optional key; values = USER, ADMIN; default = USER),
-        "stack": {
-            "langs": [PYTHON, C... OBJECTIVEC],
-            "frameworks": [REACT, VUE... DOTNET],
-            "databases":[POSTGRES, MYSQL... MICROSOFTSQLSERVER]
-        }
-    }
-*/
-
-import { Request } from "express";
-import { AppUserDTO } from "../dtos/app-user.dto";
-import { AppUser } from "../models/entity/app-user.entity";
-import { appUserRepository } from "../datasource/data-source.config";
-import { AppUserMapper } from "../mappers/app-user.mapper";
+import { ca } from "zod/v4/locales/index.cjs";
+import { appUserCredentialsRepository } from "../datasource/data-source.config";
+import { AppUserCredentialsDTO } from "../dtos/app-user-credentials.dto";
+import { AppUserCredentialsMapper } from "../mappers/app-user-credentials.mapper";
+import { AppUserCredentials } from "../models/entity/app-user-credentials.entity";
 
 export class AppUserService {
-    appUserMapper: AppUserMapper = new AppUserMapper();
 
-    async createUser(appUserRequest: Request<{}, {}, AppUserDTO>): Promise <AppUser> {
-        try {
-            const userEntity = this.appUserMapper.reqToEntity(appUserRequest)
-            await appUserRepository.save(userEntity);
-            return userEntity;
-        } catch (error) {
-            throw error;
-        }
+    appUserCredentialsMapper: AppUserCredentialsMapper = new AppUserCredentialsMapper();
+
+    async saveAppUserCredentials(appUserCredentialsDTO: AppUserCredentialsDTO): Promise<AppUserCredentialsDTO> {
+        const appUserCredential = await this.appUserCredentialsMapper.toEntity(appUserCredentialsDTO);
+        await appUserCredentialsRepository.save(appUserCredential);
+        return appUserCredentialsDTO;
     }
 }

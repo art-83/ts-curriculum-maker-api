@@ -1,17 +1,20 @@
 import { Request, Response } from "express";
 import { AppUserService } from "../services/app-user.service";
-import { AppUserDTO } from "../dtos/app-user.dto";
+import { AppUserCredentialsDTO } from "../dtos/app-user-credentials.dto";
+import { ca } from "zod/v4/locales/index.cjs";
 
 const userService = new AppUserService();
 
 export class AppUserController {
-    async create(req: Request<{}, {}, AppUserDTO>, res: Response) {
+
+    appUserService: AppUserService = new AppUserService();
+
+    async createAppUserCredentials(req: Request<{}, {}, AppUserCredentialsDTO>, res: Response): Promise<Response> {
         try {
-            const createdUser = await userService.createUser(req);
-            return res.status(201).json(createdUser);
+            await this.appUserService.saveAppUserCredentials(req.body);
         } catch (error) {
-            console.error(error);
-            return res.status(500).json({ message: "Error persisting 'AppUser'." });
+            return res.status(500).json({ message: "Error trying to register." });
         }
+        return res.status(200).json(req.body);
     }
 }
