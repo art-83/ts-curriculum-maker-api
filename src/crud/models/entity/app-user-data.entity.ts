@@ -11,34 +11,34 @@ export class AppUserData {
 
     @OneToOne(() => AppUserCredentials, appUserCredentials => appUserCredentials.appUserData)
     @JoinColumn({name: "user_id"})
-    private appUserCredentials: AppUserCredentials;
+    appUserCredentials: AppUserCredentials;
 
     @Column({ name: "full_name" })
-    private fullName: string;
+    fullName: string;
 
     @Column({type: "date"})
-    private birthday: Date;
+    birthday: Date;
 
     @Column({ name: "contact_email", unique: true })
-    private contactEmail: string;
+    contactEmail: string;
 
     @Column()
-    private github: string;
+    github: string;
 
     @Column()
-    private linkedin: string;
+    linkedin: string;
 
     @Column({ nullable: true })
-    private university: string;
+    university: string;
 
     @Column({name: "university_finished_at", nullable: true})
-    private universityFinishedAt: number;
+    universityFinishedAt: number;
 
     @Column({ type: "text", nullable: true })
-    private seniority: SeniorityEnum;
+    seniority: SeniorityEnum;
 
     @OneToOne(() => AppUserStack, appUserStack => appUserStack.appUserData, { cascade: true })
-    private stack: AppUserStack;
+    stack: AppUserStack;
 
     constructor(fullname: string, contactEmail: string, github: string, linkedin: string, university: string, universityFinishedAt: number, seniority: SeniorityEnum) {
         this.fullName = fullname;
@@ -49,6 +49,4 @@ export class AppUserData {
         this.universityFinishedAt = universityFinishedAt;
         this.seniority = seniority;
     }
-
-    
 }

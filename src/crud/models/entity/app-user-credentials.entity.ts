@@ -6,25 +6,25 @@ import { AppUserData } from "./app-user-data.entity";
 export class AppUserCredentials {
 
     @PrimaryGeneratedColumn("uuid")
-    private id: string;
+    id: string;
 
     @Column({ unique: true })
-    private email: string;
+    email: string;
 
     @Column()
-    private password: string;
+    password: string;
 
     @Column({ unique: true })
-    private cpf: string;
+    cpf: string;
 
     @Column({ default: RoleEnum.USER, type: "text" })
-    private role: RoleEnum;
+    role: RoleEnum;
     
     @Column({ name: "created_at", type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
-    private createdAt: Date;
+    createdAt: Date;
 
-    @OneToOne(() => AppUserData, appUserData => appUserData)
-    private appUserData: AppUserData;
+    @OneToOne(() => AppUserData, appUserData => appUserData.appUserCredentials)
+    appUserData: AppUserData;
 
     constructor(email: string, password: string, cpf: string, role: RoleEnum) {
         this.email = email;

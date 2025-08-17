@@ -8,32 +8,32 @@ import { LangEnum } from "../enums/stack-lang.enum";
 export class AppUserStack {
 
     @PrimaryGeneratedColumn("uuid")
-    private id: string;
+    id: string;
     
     @OneToOne(() => AppUserData, appUserData => appUserData.stack)
     @JoinColumn({name: "app_user_data_id"})
-    private appUserData: AppUserData;
+    appUserData: AppUserData;
 
     @Column({
         type: "text",
         array: true,
         nullable: true
     })
-    private langs: LangEnum[];
+    langs: LangEnum[];
 
     @Column({
         type: "text",
         array: true,
         nullable: true
     })
-    private frameworks: FrameworkEnum[];
+    frameworks: FrameworkEnum[];
 
     @Column({
         type:"text",
         array: true,
         nullable: true
     })
-    private databases: DatabaseEnum[];
+    databases: DatabaseEnum[];
 
     constructor(langs: LangEnum[], frameworks: FrameworkEnum[], databases: DatabaseEnum[]) {
         this.langs = langs;
