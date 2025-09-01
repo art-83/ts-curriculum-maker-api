@@ -1,6 +1,6 @@
 import { RoleEnum } from "../models/enums/user-role.enum";
 
-export interface AppUserCredentialsDTO{
+export interface AppUserCredentialsType {
     email: string;
     password: string;
     cpf: string;

@@ -1,18 +1,30 @@
-import { z } from "zod";
+import { email, z } from "zod";
 import { RoleEnum } from "../../models/enums/user-role.enum";
-import { AppUserCredentialsDTO } from "../../dtos/app-user-credentials.dto";
+import { AppUserCredentialsType } from "../../types/app-user-credentials";
+import { AppUserLoginRequestType } from "../../types/app-user-login-request";
 
 export class AppUserValidator {
-    public validateAppUserCredentialsDTO(appUserCredentialsDTO: AppUserCredentialsDTO): void {
+    public validateAppUserCredentials(appUserCredentialsType: AppUserCredentialsType): void {
         const appUserCredentialsSchema = z.object({
             email: z.email(),
             password: z.string(),
             cpf: z.string(),
             role: z.enum(RoleEnum)
         });
-        const validation = appUserCredentialsSchema.safeParse(appUserCredentialsDTO);
+        const validation = appUserCredentialsSchema.safeParse(appUserCredentialsType);
         if(!validation.success) {
-            throw validation.error;
+            throw validation.error.message;
+        }
+    }
+
+    public validadeAppUserLoginRequest(appUserLoginRequest: AppUserLoginRequestType): void {
+        const appUserLoginRequestSchema = z.object({
+            email: z.email(),
+            password: z.string()
+        });
+        const validation = appUserLoginRequestSchema.safeParse(appUserLoginRequest);
+        if(!validation.success) {
+            throw validation.error.message;
         }
     }
 }

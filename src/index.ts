@@ -12,6 +12,6 @@ const app = express();
 
 app.use(express.json());
 
-app.use("/user", appUserRoutes);
+app.use("/users", appUserRoutes);
 
 app.listen(process.env.SERVER_PORT, () => console.log(`http://localhost:${process.env.SERVER_PORT}`));

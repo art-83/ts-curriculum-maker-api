@@ -1,21 +1,26 @@
-import { AppUserCredentialsDTO } from "../dtos/app-user-credentials.dto";
+import { AppUserCredentialsType } from "../types/app-user-credentials";
 import { BcryptManager } from "../managers/bcrypt.manager";
-import { AppUserValidator } from "../middlewares/validation/app-user.validator";
 import { AppUserCredentials } from "../models/entity/app-user-credentials.entity";
 
 export class AppUserCredentialsMapper {
 
-    private readonly appUserValidator: AppUserValidator = new AppUserValidator();
-    private readonly bcryptManager: BcryptManager = new BcryptManager();
+    private readonly bcryptManager: BcryptManager;
 
-    public async toEntity(appUserCredentialsDTO: AppUserCredentialsDTO): Promise<AppUserCredentials> {
-        const passwordHash = await this.bcryptManager.encrypt(appUserCredentialsDTO.password);
-        const cpfHash = await this.bcryptManager.encrypt(appUserCredentialsDTO.cpf);
-        return new AppUserCredentials(
-            appUserCredentialsDTO.email,
-            passwordHash,
-            cpfHash,
-            appUserCredentialsDTO.role
-        );
+    constructor() {
+        this.bcryptManager = new BcryptManager();
+    }
+
+    public async toEntity(appUserCredentialsType: AppUserCredentialsType): Promise<AppUserCredentials> {
+        try {
+            const passwordHash = await this.bcryptManager.encrypt(appUserCredentialsType.password);
+            return new AppUserCredentials(
+                appUserCredentialsType.email,
+                passwordHash,
+                appUserCredentialsType.cpf,
+                appUserCredentialsType.role
+            );
+        } catch(error) {
+            throw new Error("Fail in parsing request body into entity.");
+        }
     }
 }
